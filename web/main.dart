@@ -86,6 +86,7 @@ void chosenOption(Task task) {
   if(age >= yearMax) {
     age = yearMax;
     previousOutputDisp.appendHtml("<br> You have died.");
+    optionsHolderDisp.children.clear();
   } else {
     buildOptions();
   }

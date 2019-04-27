@@ -53,7 +53,7 @@ class SevenSegmentDisplay extends Display {
 
     SvgSvgElement ret = new SvgSvgElement();
     ret.setAttribute("height", "56");
-    ret.setAttribute("width", "${31 * getNumOfDigits(maxValue)}");
+    ret.setAttribute("width", "${33 * getNumOfDigits(maxValue)}");
 
     //setup for glow
     DefsElement defs = new DefsElement();
@@ -105,7 +105,7 @@ class SevenSegmentDisplay extends Display {
         //print(digit);
       }
 
-      int absX = 31 * i;
+      int absX = 34 * i;
       for(int j = 0; j < 7; j++) {
         Segment segment;
         segment = Segment.makeSegmentForPortion(j, absX);
@@ -173,7 +173,7 @@ class Segment {
     }else if(isLit) {
       ret.setAttribute("fill", "#FF0000");
     } else {
-      ret.setAttribute("fill", "#777777");
+      ret.setAttribute("fill", "#AAAAAA");
     }
 
     return ret;
