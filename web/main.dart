@@ -27,11 +27,8 @@ void main() {
   yearMax = 80;
   lifetimeEvents = [];
 
-  allowedEvents = [
-    Task.COLLEGE,
-    Task.CONSTRUCTION,
-    Task.CLERK,
-  ];//start small but it grows over time.
+  allowedEvents = [];
+  allowedEvents.addAll(Task.defaultTasks);
 
 
   ageDisp = document.querySelector("#age");
