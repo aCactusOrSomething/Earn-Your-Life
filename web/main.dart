@@ -12,7 +12,9 @@ DivElement ageDisp;
 DivElement yearsLeftDisp;
 DivElement previousOutputDisp;
 DivElement optionsHolderDisp;
+
 List<Task> allowedEvents;
+List<Task> lifetimeEvents;
 
 Random rand;
 final String INTRO_TEXT =
@@ -23,11 +25,14 @@ void main() {
 
   age = 18;
   yearMax = 80;
+  lifetimeEvents = [];
+
   allowedEvents = [
     Task.UNDERGRAD,
     Task.CONSTRUCTION,
     Task.CLERK,
-  ];
+  ];//start small but it grows over time.
+
 
   ageDisp = document.querySelector("#age");
   yearsLeftDisp = document.querySelector("#yearsLeft");
@@ -37,6 +42,7 @@ void main() {
   updateAgeDisplay();
   updateYearsLeftDisplay();
 
+  previousOutputDisp.children.clear();
   previousOutputDisp.appendHtml(INTRO_TEXT);
   buildOptions();
 }
@@ -78,19 +84,52 @@ void buildOptions() {
 }
 
 void chosenOption(Task task) {
+  lifetimeEvents.add(task);
   previousOutputDisp.children.clear();
-  previousOutputDisp.appendText("You ${task.title}");
+  SevenSegmentDisplay years = new SevenSegmentDisplay(task.yearCost, task.yearCost, "");
+  previousOutputDisp.appendText("You ${task.title.toLowerCase()} for ");
+  previousOutputDisp.append(years.graphicalDisplay());
+  previousOutputDisp.appendText("years.");
 
   age += task.yearCost;
 
   if(age >= yearMax) {
     age = yearMax;
-    previousOutputDisp.appendHtml("<br> You have died.");
+    previousOutputDisp.appendHtml("<br> You have died. <br> <br>Are you satisfied with your life?");
     optionsHolderDisp.children.clear();
+
+    DivElement yes = new DivElement();
+    yes.text = "Yes (end game.)";
+    yes.setAttribute("id", "option");
+    yes.onClick.listen((e) => retellMyLife());
+
+    DivElement no = new DivElement();
+    no.text = "No (wake up from your dream.)";
+    no.setAttribute("id", "option");
+    no.onClick.listen((e) => main()); //i feel so dirty for this
+
+    optionsHolderDisp.append(yes);
+    optionsHolderDisp.append(no);
   } else {
     buildOptions();
   }
   updateAgeDisplay();
   updateYearsLeftDisplay();
 
+}
+
+void retellMyLife() {
+  previousOutputDisp.children.clear();
+  optionsHolderDisp.children.clear();
+  previousOutputDisp.appendHtml("A retelling of the events of your life:<br>");
+  for(int i = 0; i < lifetimeEvents.length; i++) {
+    Task task = lifetimeEvents[i];
+    SevenSegmentDisplay years = new SevenSegmentDisplay(task.yearCost, task.yearCost, "");
+    previousOutputDisp.appendText("You ${task.title.toLowerCase()} for ");
+    previousOutputDisp.append(years.graphicalDisplay());
+    previousOutputDisp.appendHtml("years.<br>");
+  }
+  previousOutputDisp.appendHtml("Connie Swift died satisfied with their life.<br>"
+      "<h1>The End.</h1><br>"
+      "<h3>Code by Hudson Miller<h3>");
 }

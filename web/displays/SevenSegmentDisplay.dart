@@ -173,7 +173,9 @@ class Segment {
     }else if(isLit) {
       ret.setAttribute("fill", "#FF0000");
     } else {
-      ret.setAttribute("fill", "#AAAAAA");
+      ret.setAttribute("fill", "#808080");
+      ret.setAttribute("opacity", "10%");
+      ret.style.opacity = "10%";
     }
 
     return ret;
