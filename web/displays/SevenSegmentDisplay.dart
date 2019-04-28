@@ -174,8 +174,8 @@ class Segment {
       ret.setAttribute("fill", "#FF0000");
     } else {
       ret.setAttribute("fill", "#808080");
-      ret.setAttribute("opacity", "10%");
-      ret.style.opacity = "10%";
+      ret.setAttribute("opacity", "0.3");
+      ret.style.opacity = "0.3";
     }
 
     return ret;

@@ -28,7 +28,7 @@ void main() {
   lifetimeEvents = [];
 
   allowedEvents = [
-    Task.UNDERGRAD,
+    Task.COLLEGE,
     Task.CONSTRUCTION,
     Task.CLERK,
   ];//start small but it grows over time.
@@ -85,11 +85,11 @@ void buildOptions() {
 
 void chosenOption(Task task) {
   lifetimeEvents.add(task);
+  for(int i = 0; i < task.unlockedTasks.length; i++) {
+    allowedEvents.add(task.unlockedTasks[i]);
+  }
   previousOutputDisp.children.clear();
-  SevenSegmentDisplay years = new SevenSegmentDisplay(task.yearCost, task.yearCost, "");
-  previousOutputDisp.appendText("You ${task.title.toLowerCase()} for ");
-  previousOutputDisp.append(years.graphicalDisplay());
-  previousOutputDisp.appendText("years.");
+  addDescForTask(task);
 
   age += task.yearCost;
 
@@ -124,12 +124,17 @@ void retellMyLife() {
   previousOutputDisp.appendHtml("A retelling of the events of your life:<br>");
   for(int i = 0; i < lifetimeEvents.length; i++) {
     Task task = lifetimeEvents[i];
-    SevenSegmentDisplay years = new SevenSegmentDisplay(task.yearCost, task.yearCost, "");
-    previousOutputDisp.appendText("You ${task.title.toLowerCase()} for ");
-    previousOutputDisp.append(years.graphicalDisplay());
-    previousOutputDisp.appendHtml("years.<br>");
+    addDescForTask(task);
+    previousOutputDisp.appendHtml("<br>");
   }
   previousOutputDisp.appendHtml("Connie Swift died satisfied with their life.<br>"
       "<h1>The End.</h1><br>"
       "<h3>Code by Hudson Miller<h3>");
+}
+
+void addDescForTask(Task task) {
+  SevenSegmentDisplay years = new SevenSegmentDisplay(task.yearCost, task.yearCost, "");
+  previousOutputDisp.appendText("You ${task.title.substring(0, task.title.length - 1).toLowerCase()} for ");
+  previousOutputDisp.append(years.graphicalDisplay());
+  previousOutputDisp.appendText("years.");
 }
