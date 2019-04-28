@@ -21,6 +21,7 @@ final String INTRO_TEXT =
     "The alarm clock blares, and you shut it off instantly. It is the day of your high school graduation. You are free to make whatever decisions you want with your life now, and you are determined to not waste a single second. <br>Your name is Connie Swift. What will you do now?";
 
 void main() {
+  //Task.buildDefinitions();
   rand = new Random();
 
   age = 18;
