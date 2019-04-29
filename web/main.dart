@@ -127,7 +127,8 @@ void retellMyLife() {
   }
   previousOutputDisp.appendHtml("Connie Swift died satisfied with their life.<br>"
       "<h1>The End.</h1><br>"
-      "<h3>Code by Hudson Miller<h3>");
+      "<h3>Code by Hudson Miller</h3>"
+      "<h3>Music by manicInsomniac</h3>");
 }
 
 void addDescForTask(Task task) {
