@@ -21,6 +21,7 @@ Random rand;
 final String INTRO_TEXT =
     "The alarm clock blares, and you shut it off instantly. It is the day of your high school graduation. You are free to make whatever decisions you want with your life now, and you are determined to not waste a single second. <br>Your name is Connie Swift. What will you do now?";
 
+bool firstTry = true;
 final List<String> OCCURRENCES = [
   "Your pet died.",
   "You fell in love.",
@@ -37,7 +38,7 @@ final List<String> OCCURRENCES = [
   "You miss your childhood.",
   "You are haunted by the past.",
   "You picked up a new hobby.",
-  "You were an inspiration.",
+  "You were an inspiration to many.",
   "You were heartbroken.",
 ];
 
@@ -63,6 +64,9 @@ void main() {
   updateYearsLeftDisplay();
 
   previousOutputDisp.children.clear();
+  if(!firstTry) {
+    previousOutputDisp.appendHtml("Your life flashes before your eyes. It was all a dream. Maybe things will be different. <br><br>");
+  }
   previousOutputDisp.appendHtml(INTRO_TEXT);
   buildOptions();
 }
@@ -127,7 +131,7 @@ void chosenOption(Task task) {
     DivElement no = new DivElement();
     no.text = "No (wake up from your dream.)";
     no.setAttribute("id", "option");
-    no.onClick.listen((e) => main()); //i feel so dirty for this
+    no.onClick.listen((e) => unsatisfied());
 
     optionsHolderDisp.append(yes);
     optionsHolderDisp.append(no);
@@ -175,4 +179,9 @@ String getRandomOccurrence() {
   }
   myOccurrences.add(ret);
   return ret;
+}
+
+void unsatisfied() {
+  firstTry = false;
+  main();
 }

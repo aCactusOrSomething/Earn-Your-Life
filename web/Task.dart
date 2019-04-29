@@ -40,9 +40,9 @@ class Task {
   static Task SPACESHIP = new Task("Build a spaceship.", 3, [MARS]);
   static Task MARS = new Task("Help colonize mars.", 4, []);
   static Task ADVENTURER = new Task("Scour the wilds for adventure.", 3, []);
-  static Task ACTIVIST = new Task("Be a political activist.", 2, [CANDIDACY]);
+  static Task ACTIVIST = new Task("Engage in political activism.", 2, [CANDIDACY]);
   static Task CANDIDACY = new Task("Run for political office.", 4, []); //either 4, 2, or 6. 4 is a good average though. Connie For President.
-  static Task ENVIRONMENTALIST = new Task("Save the whales, and the trees.", 5, [CANDIDACY]);
+  static Task ENVIRONMENTALIST = new Task("try to save the whales", 5, [CANDIDACY]);
   static Task GENETICS = new Task("perform advanced gene manipulation", 3, []); //your contribitions to science no know bounds
   static Task MAFIA = new Task("Assist the mafia.", 5, [DON]);
   static Task DON = new Task("Become the head of organized crime.", 5, []);
