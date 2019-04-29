@@ -15,10 +15,31 @@ DivElement optionsHolderDisp;
 
 List<Task> allowedEvents;
 List<Task> lifetimeEvents;
+List<String> myOccurrences;
 
 Random rand;
 final String INTRO_TEXT =
     "The alarm clock blares, and you shut it off instantly. It is the day of your high school graduation. You are free to make whatever decisions you want with your life now, and you are determined to not waste a single second. <br>Your name is Connie Swift. What will you do now?";
+
+final List<String> OCCURRENCES = [
+  "Your pet died.",
+  "You fell in love.",
+  "You lost a loved one.",
+  "You became very sick.",
+  "Your family grew.",
+  "You felt happy.",
+  "You felt uneasy.",
+  "You struggled.",
+  "You thrived.",
+  "Your friends grew distant.",
+  "Your friends grew closer.",
+  "You won a contest.",
+  "You miss your childhood.",
+  "You are haunted by the past.",
+  "You picked up a new hobby.",
+  "You were an inspiration.",
+  "You were heartbroken.",
+];
 
 void main() {
   //Task.buildDefinitions();
@@ -27,6 +48,7 @@ void main() {
   age = 18;
   yearMax = 80;
   lifetimeEvents = [];
+  myOccurrences = [];
 
   allowedEvents = [];
   allowedEvents.addAll(Task.defaultTasks);
@@ -88,6 +110,7 @@ void chosenOption(Task task) {
   }
   previousOutputDisp.children.clear();
   addDescForTask(task);
+  previousOutputDisp.appendHtml("<br>${getRandomOccurrence().toString()}");
 
   age += task.yearCost;
 
@@ -123,7 +146,7 @@ void retellMyLife() {
   for(int i = 0; i < lifetimeEvents.length; i++) {
     Task task = lifetimeEvents[i];
     addDescForTask(task);
-    previousOutputDisp.appendHtml("<br>");
+    previousOutputDisp.appendHtml(" ${myOccurrences[i].toString()}<br>");
   }
   previousOutputDisp.appendHtml("Connie Swift died satisfied with their life.<br>"
       "<h1>The End.</h1><br>"
@@ -143,4 +166,13 @@ void addDescForTask(Task task) {
   previousOutputDisp.appendText("You ${task.title.substring(0, task.title.length - 1).toLowerCase()} for ");
   previousOutputDisp.append(years.graphicalDisplay());
   previousOutputDisp.appendText("years.");
+}
+
+String getRandomOccurrence() {
+  String ret = "";
+  if(rand.nextDouble() > .70) {
+    ret = OCCURRENCES[rand.nextInt(OCCURRENCES.length)];
+  }
+  myOccurrences.add(ret);
+  return ret;
 }
