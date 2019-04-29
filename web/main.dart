@@ -127,8 +127,15 @@ void retellMyLife() {
   }
   previousOutputDisp.appendHtml("Connie Swift died satisfied with their life.<br>"
       "<h1>The End.</h1><br>"
-      "<h3>Code by Hudson Miller</h3>"
-      "<h3>Music by manicInsomniac</h3>");
+      "<h3>Code by a cactus</h3>");
+      //"<h3>Music by <a href=\"http:\/\/manicinsomniacmusic.tumblr.com/\">ManicInsomniac</a></h3>");
+  AnchorElement creditLink = new AnchorElement();
+  creditLink.href = "http:\/\/manicinsomniacmusic.tumblr.com/";
+  creditLink.text = "ManicInsomniac";
+  HeadingElement holder = new HeadingElement.h3();
+  holder.appendText("Music by ");
+  holder.append(creditLink);
+  previousOutputDisp.append(holder);
 }
 
 void addDescForTask(Task task) {
