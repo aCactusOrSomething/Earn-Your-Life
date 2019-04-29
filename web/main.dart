@@ -152,7 +152,7 @@ void retellMyLife() {
     addDescForTask(task);
     previousOutputDisp.appendHtml(" ${myOccurrences[i].toString()}<br>");
   }
-  previousOutputDisp.appendHtml("Connie Swift died satisfied with their life.<br>"
+  previousOutputDisp.appendHtml("Connie Swift died satisfied with their life. May she rest in peace.<br>"
       "<h1>The End.</h1><br>"
       "<h3>Code by a cactus</h3>");
       //"<h3>Music by <a href=\"http:\/\/manicinsomniacmusic.tumblr.com/\">ManicInsomniac</a></h3>");
